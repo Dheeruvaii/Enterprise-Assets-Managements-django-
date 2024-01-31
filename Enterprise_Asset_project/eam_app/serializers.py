@@ -21,7 +21,24 @@ class EmployeeSerializer(serializers.ModelSerializer):
         model = Employee
         fields = '__all__'
 
+# class AssignmentSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = Assignment
+#         fields = '__all__'
 class AssignmentSerializer(serializers.ModelSerializer):
+    # employee = EmployeeSerializer()  # Use the nested serializer for the employee field
+
     class Meta:
         model = Assignment
-        fields = '__all__'
+        fields = ['asset', 'employee', 'assignment_date', 'return_date']
+
+    def to_representation(self, instance):
+        representation= super().to_representation(instance)
+        Employee_data ={
+            'id':instance.id,
+            'name':instance.name,
+        }
+
+        representation['employee']=Employee_data
+
+        return representation
