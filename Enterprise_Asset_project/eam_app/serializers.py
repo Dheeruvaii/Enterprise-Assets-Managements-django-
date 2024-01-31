@@ -35,8 +35,8 @@ class AssignmentSerializer(serializers.ModelSerializer):
     def to_representation(self, instance):
         representation= super().to_representation(instance)
         Employee_data ={
-            'id':instance.id,
-            'name':instance.name,
+            'id':instance.employee.id,
+            'name':instance.employee.name,
         }
 
         representation['employee']=Employee_data
