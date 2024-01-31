@@ -38,17 +38,30 @@ class AssetSerializer(serializers.ModelSerializer):
         model = Asset
         fields = ['id', 'asset_number', 'name', 'category', 'acquisition_date', 'purchase_cost', 'current_value', 'location', 'is_active']
 
-
     def to_representation(self, instance):
         representation = super().to_representation(instance)
 
-        # Check if 'category' is a dictionary
-        if 'category' in representation and isinstance(representation['category'], dict):
-            # Extract the 'name' field from the nested serializer
-            category_name = representation['category']['name']
-            representation['category'] = category_name
+        # Check if 'employee' is a dictionary
+        if 'employee' in representation and isinstance(representation['employee'], dict):
+            # Extract the 'id' and 'name' fields from the nested serializer
+            employee_data = {
+                'id': instance.employee.id,
+                'name': instance.employee.name,
+            }
+            representation['employee'] = employee_data
 
         return representation
+
+    # def to_representation(self, instance):
+    #     representation = super().to_representation(instance)
+
+    #     # Check if 'category' is a dictionary
+    #     if 'category' in representation and isinstance(representation['category'], dict):
+    #         # Extract the 'name' field from the nested serializer
+    #         category_name = representation['category']['name']
+    #         representation['category'] = category_name
+
+    #     return representation
         
     # def to_representation(self, instance):
     #     representation = super().to_representation(instance)
