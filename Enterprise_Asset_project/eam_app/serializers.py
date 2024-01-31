@@ -38,6 +38,15 @@ class AssetSerializer(serializers.ModelSerializer):
         model = Asset
         fields = ['id', 'asset_number', 'name', 'category', 'acquisition_date', 'purchase_cost', 'current_value', 'location', 'is_active']
 
+        def to_representation(self,instance):
+            representation=super().to_representation(instance)
+            Ccategory_data={
+                'name':instance.category.name,
+            }
+            representation['category']=Ccategory_data
+
+            return representation
+
 class MaintenanceRecordSerializer(serializers.ModelSerializer):
     class Meta:
         model = MaintenanceRecord
