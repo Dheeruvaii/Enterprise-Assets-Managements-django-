@@ -42,13 +42,13 @@ class AssetSerializer(serializers.ModelSerializer):
         representation = super().to_representation(instance)
 
         # Check if 'employee' is a dictionary
-        if 'employee' in representation and isinstance(representation['employee'], dict):
+        # if 'employee' in representation and isinstance(representation['employee'], dict):
             # Extract the 'id' and 'name' fields from the nested serializer
-            employee_data = {
-                'id': instance.employee.id,
-                'name': instance.employee.name,
+        category_data = {
+                'id': instance.category.id,
+                'name': instance.category.name,
             }
-            representation['employee'] = employee_data
+        representation['category'] = category_data
 
         return representation
 
