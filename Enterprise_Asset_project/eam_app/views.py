@@ -18,7 +18,7 @@ class AssetCategoryListCreateView(generics.ListCreateAPIView):
 class AssetListCreateView(generics.ListCreateAPIView):
     queryset = Asset.objects.all()
     serializer_class = AssetSerializer
-    filterset_class=AssetFilter
+    # filterset_class=AssetFilter
 
 class MaintenanceRecordListCreateView(generics.ListCreateAPIView):
     queryset = MaintenanceRecord.objects.all()
