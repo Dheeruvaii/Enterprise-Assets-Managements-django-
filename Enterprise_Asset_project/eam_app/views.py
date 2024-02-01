@@ -40,6 +40,8 @@
 #     serializer_class = AssignmentSerializer
 from django.shortcuts import render
 from rest_framework import viewsets
+from django_filters.rest_framework import DjangoFilterBackend
+from filters import  *
 from .models import AssetCategory, Asset, MaintenanceRecord, Employee, Assignment
 from .serializers import (
     AssetCategorySerializer,
@@ -56,8 +58,8 @@ class AssetCategoryViewSet(viewsets.ModelViewSet):
 class AssetViewSet(viewsets.ModelViewSet):
     queryset = Asset.objects.all()
     serializer_class = AssetSerializer
-    filter_backends=[DjangoFilterBackendn]
-    filterset_class=AssetFilter
+    filter_backends=[DjangoFilterBackend]
+    filterset_fields=AssetFilter
 
 class MaintenanceRecordViewSet(viewsets.ModelViewSet):
     queryset = MaintenanceRecord.objects.all()
