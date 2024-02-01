@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from rest_framework import viewsets
 
 # Create your views here.
 from rest_framework import generics
@@ -15,7 +16,13 @@ class AssetCategoryListCreateView(generics.ListCreateAPIView):
     queryset = AssetCategory.objects.all()
     serializer_class = AssetCategorySerializer
 
+class AssetCategoryListCreateView(viewsets.ModelViewSet):
+    queryset = AssetCategory.objects.all()
+    serializer_class = AssetCategorySerializer
+
 class AssetListCreateView(generics.ListCreateAPIView):
+
+
     queryset = Asset.objects.all()
     serializer_class = AssetSerializer
     # filterset_class=AssetFilter
