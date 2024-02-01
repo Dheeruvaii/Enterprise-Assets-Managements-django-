@@ -56,7 +56,8 @@ class AssetCategoryViewSet(viewsets.ModelViewSet):
 class AssetViewSet(viewsets.ModelViewSet):
     queryset = Asset.objects.all()
     serializer_class = AssetSerializer
-    # filterset_class=AssetFilter
+    filter_backends=[DjangoFilterBackendn]
+    filterset_class=AssetFilter
 
 class MaintenanceRecordViewSet(viewsets.ModelViewSet):
     queryset = MaintenanceRecord.objects.all()
