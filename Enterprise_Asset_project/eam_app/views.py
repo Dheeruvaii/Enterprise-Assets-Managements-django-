@@ -56,12 +56,15 @@ class AssetCategoryViewSet(viewsets.ModelViewSet):
     queryset = AssetCategory.objects.all()
     serializer_class = AssetCategorySerializer
 
-    def create(self,request):
-        query=AssetCategory.objects.all()
-        serializer=AssetCategorySerializer(query,many=True)
-        serializer.is_valid()
-        serializer.save()
-        return Response(serializer.data)
+    def create(self, request, *args, **kwargs):
+        # Assuming your serializer is properly handling the request.data
+        serializer = AssetCategorySerializer(data=request.data)
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=201)
+        else:
+            return Response(serializer.errors, status=400)
 
 class AssetViewSet(viewsets.ModelViewSet):
     queryset = Asset.objects.all()
@@ -69,12 +72,15 @@ class AssetViewSet(viewsets.ModelViewSet):
     filter_backends=[DjangoFilterBackend]
     filterset_class=AssetFilter
 
-    def create(self,request):
-        query=Asset.objects.all()
-        serializer=AssetSerializer(query,many=True)
-        serializer.is_valid()
-        serializer.save()
-        return Response(serializer.data)
+    def create(self, request, *args, **kwargs):
+        # Assuming your serializer is properly handling the request.data
+        serializer = AssetSerializer(data=request.data)
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=201)
+        else:
+            return Response(serializer.errors, status=400)
 
 class MaintenanceRecordViewSet(viewsets.ModelViewSet):
     queryset = MaintenanceRecord.objects.all()
@@ -82,32 +88,41 @@ class MaintenanceRecordViewSet(viewsets.ModelViewSet):
 
     
        
-    def create(self,request):
-        query=MaintenanceRecord.objects.all()
-        serializer=MaintenanceRecordSerializer(query,many=True)
-        serializer.is_valid()
-        serializer.save()
-        return Response(serializer.data)
+    def create(self, request, *args, **kwargs):
+        # Assuming your serializer is properly handling the request.data
+        serializer = MaintenanceRecordSerializer(data=request.data)
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=201)
+        else:
+            return Response(serializer.errors, status=400)
 
 class EmployeeViewSet(viewsets.ModelViewSet):
     queryset = Employee.objects.all()
     serializer_class = EmployeeSerializer
 
-    def create(self,request):
-        query=Employee.objects.all()
-        serializer=EmployeeSerializer(query,many=True)
-        serializer.is_valid()
-        serializer.save()
-        return Response(serializer.data)
+    def create(self, request, *args, **kwargs):
+        # Assuming your serializer is properly handling the request.data
+        serializer = EmployeeSerializer(data=request.data)
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=201)
+        else:
+            return Response(serializer.errors, status=400)
 
 
 class AssignmentViewSet(viewsets.ModelViewSet):
     queryset = Assignment.objects.all()
     serializer_class = AssignmentSerializer
 
-    def create(self,request):
-        query=Assignment.objects.all()
-        serializer=AssignmentSerializer(query,many=True)
-        serializer.is_valid()
-        serializer.save()
-        return Response(serializer.data)
+    def create(self, request, *args, **kwargs):
+        # Assuming your serializer is properly handling the request.data
+        serializer = AssignmentSerializer(data=request.data)
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=201)
+        else:
+            return Response(serializer.errors, status=400)
