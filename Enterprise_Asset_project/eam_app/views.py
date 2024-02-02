@@ -41,6 +41,7 @@
 from django.shortcuts import render
 from rest_framework import viewsets
 from django_filters.rest_framework import DjangoFilterBackend
+from .filters import AssetFilter
 # from filters import  *
 from .models import AssetCategory, Asset, MaintenanceRecord, Employee, Assignment
 from .serializers import (
@@ -55,7 +56,7 @@ class AssetCategoryViewSet(viewsets.ModelViewSet):
     queryset = AssetCategory.objects.all()
     serializer_class = AssetCategorySerializer
 
-     def create(self,instance):
+    def create(self,request):
         query=AssetCategory.objects.all()
         serializer=AssetCategorySerializer(query,many=True)
         serializer.is_valid()
@@ -66,9 +67,9 @@ class AssetViewSet(viewsets.ModelViewSet):
     queryset = Asset.objects.all()
     serializer_class = AssetSerializer
     filter_backends=[DjangoFilterBackend]
-    # filterset_fields=AssetFilter
+    filterset_class=AssetFilter
 
-    def create(self,instance):
+    def create(self,request):
         query=Asset.objects.all()
         serializer=AssetSerializer(query,many=True)
         serializer.is_valid()
@@ -80,7 +81,8 @@ class MaintenanceRecordViewSet(viewsets.ModelViewSet):
     serializer_class = MaintenanceRecordSerializer
 
     
-       def create(self,instance):
+       
+    def create(self,request):
         query=MaintenanceRecord.objects.all()
         serializer=MaintenanceRecordSerializer(query,many=True)
         serializer.is_valid()
@@ -91,7 +93,7 @@ class EmployeeViewSet(viewsets.ModelViewSet):
     queryset = Employee.objects.all()
     serializer_class = EmployeeSerializer
 
-       def create(self,instance):
+    def create(self,request):
         query=Employee.objects.all()
         serializer=EmployeeSerializer(query,many=True)
         serializer.is_valid()
@@ -103,7 +105,7 @@ class AssignmentViewSet(viewsets.ModelViewSet):
     queryset = Assignment.objects.all()
     serializer_class = AssignmentSerializer
 
-    def create(self,instance):
+    def create(self,request):
         query=Assignment.objects.all()
         serializer=AssignmentSerializer(query,many=True)
         serializer.is_valid()
