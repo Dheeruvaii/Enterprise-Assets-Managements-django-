@@ -118,7 +118,7 @@ REST_FRAMEWORK = {
         'django_filters.rest_framework.DjangoFilterBackend',
     ],
   
-    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.CustomPagination",
+    "DEFAULT_PAGINATION_CLASS": "eam_app.pagination.CustomPagination",
     "PAGE_SIZE": 5,
 }
   
