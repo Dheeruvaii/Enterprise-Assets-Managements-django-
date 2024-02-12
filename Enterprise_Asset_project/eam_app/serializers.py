@@ -1,30 +1,4 @@
-# from rest_framework import serializers
-# from .models import AssetCategory, Asset, MaintenanceRecord, Employee, Assignment
 
-# class AssetCategorySerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = AssetCategory
-#         fields = '__all__'
-
-# class AssetSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = Asset
-#         fields = '__all__'
-
-# class MaintenanceRecordSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = MaintenanceRecord
-#         fields = '__all__'
-
-# class EmployeeSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = Employee
-#         fields = '__all__'
-
-# # class AssignmentSerializer(serializers.ModelSerializer):
-# #     class Meta:
-# #         model = Assignment
-# #         fields = '__all__'
 from rest_framework import serializers
 from .models import *
 
@@ -40,10 +14,6 @@ class AssetSerializer(serializers.ModelSerializer):
 
     def to_representation(self, instance):
         representation = super().to_representation(instance)
-
-        # Check if 'employee' is a dictionary
-        # if 'employee' in representation and isinstance(representation['employee'], dict):
-            # Extract the 'id' and 'name' fields from the nested serializer
         category_data = {
                 'id': instance.category.id,
                 'name': instance.category.name,
@@ -52,25 +22,6 @@ class AssetSerializer(serializers.ModelSerializer):
 
         return representation
 
-    # def to_representation(self, instance):
-    #     representation = super().to_representation(instance)
-
-    #     # Check if 'category' is a dictionary
-    #     if 'category' in representation and isinstance(representation['category'], dict):
-    #         # Extract the 'name' field from the nested serializer
-    #         category_name = representation['category']['name']
-    #         representation['category'] = category_name
-
-    #     return representation
-        
-    # def to_representation(self, instance):
-    #     representation = super().to_representation(instance)
-
-    #     # Extract the 'name' field from the nested serializer
-    #     category_name = representation['category']['name']
-    #     representation['category'] = category_name
-
-    #     return representation
 class MaintenanceRecordSerializer(serializers.ModelSerializer):
     class Meta:
         model = MaintenanceRecord
@@ -81,10 +32,6 @@ class EmployeeSerializer(serializers.ModelSerializer):
         model = Employee
         fields = ['id', 'name', 'department']
 
-# class AssignmentSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = Assignment
-#         fields = ['id', 'asset', 'employee', 'assignment_date', 'return_date']
 
 class AssignmentSerializer(serializers.ModelSerializer):
     # employee = EmployeeSerializer()  # Use the nested serializer for the employee field
